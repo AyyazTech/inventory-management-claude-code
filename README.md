@@ -1,36 +1,60 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Inventory Management System — Built with Claude Code
 
-## Getting Started
+A complete inventory management system built end to end with **Claude Code** on the [AyyazTech](https://www.youtube.com/@AyyazTech) YouTube channel. Products, a Stock page for stock in/out, a Movements audit log, live low-stock alerts, a dashboard, and login.
 
-First, run the development server:
+🎥 **Watch the full build:** https://youtu.be/eOFUR48DCQg
+🔔 **Subscribe for more:** https://www.youtube.com/@AyyazTech
+🌐 **More tutorials:** https://ayyaztech.com
+
+## Features
+
+- 🔐 **Login** — simple username + password auth (hashed passwords, server sessions)
+- 📦 **Products** — name, SKU, category, quantity, unit price, reorder level
+- 🔁 **Stock in / out** — adjust quantities from the Stock page
+- 🧾 **Movements** — an immutable audit log of every stock change
+- 🚨 **Low-stock alerts** — automatic badges when quantity drops to or below the reorder level
+- 📊 **Dashboard** — total products, total stock value, low-stock count, and a stock-by-category chart
+
+## Tech stack
+
+Next.js 16 (App Router) · Prisma 6 + SQLite · Tailwind CSS 4 · Zod · TypeScript
+
+## Getting started
+
+Requires Node 20+ and [bun](https://bun.sh).
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
+# 1. Install dependencies
+bun install
+
+# 2. Create your environment file and set an auth secret
+cp .env.example .env
+# generate a secret and paste it into .env as AUTH_SECRET:
+openssl rand -base64 32
+
+# 3. Set up the database (applies migrations, generates the client, creates dev.db)
+bunx prisma migrate dev
+
+# 4. Seed the demo data (sample products, stock movements, and the demo login)
+bun run db:seed
+
+# 5. Run it
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Demo login
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+Username: admin
+Password: admin123
+```
 
-## Learn More
+## How it was built
 
-To learn more about Next.js, take a look at the following resources:
+Built in stages by prompting Claude Code — the products foundation first, then the Stock + Movements pages, the dashboard, and finally login. The UI direction was guided by Claude Code's official frontend-design skill. Watch the full build on the channel above.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## License
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT — use it, learn from it, build on it.
