@@ -1,26 +1,145 @@
 @import "tailwindcss";
 
+/*
+  ──────────────────────────────────────────────────────────────────────────
+  LEDGER — a warm, editorial, trustworthy inventory aesthetic.
+
+  Raw palette values live in :root. @theme inline maps them to semantic
+  Tailwind utilities so components reference meaning, never hex:
+    bg-canvas / bg-surface / bg-sunken / bg-raised
+    text-ink / text-muted / text-faint / text-on-accent
+    border-line / border-line-strong
+    text-accent / bg-accent / bg-accent-soft
+    text-low / bg-low-soft   (and ok / out / danger variants)
+
+  Single light theme by design — color-scheme is pinned so native controls,
+  scrollbars and form widgets stay on-palette.
+  ──────────────────────────────────────────────────────────────────────────
+*/
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: light;
+
+  /* Surfaces — warm paper stock */
+  --canvas: #f7f4ed;
+  --surface: #fffefb;
+  --sunken: #f1ece1;
+  --raised: #fffefb;
+
+  /* Ink & text */
+  --ink: #211e1a;
+  --muted: #6b6256;
+  --faint: #9a9184;
+  --on-accent: #fffdf8;
+
+  /* Hairlines — the ledger ruling */
+  --line: #e7e0d2;
+  --line-strong: #d6cdbb;
+
+  /* Accent — a single deep emerald */
+  --accent: #0e7a55;
+  --accent-hover: #0b6044;
+  --accent-soft: #e3efe7;
+
+  /* Stock semantics — text paired with a soft background wash */
+  --ok: #4a7359;
+  --ok-soft: #ecf2ec;
+  --low: #8a5a00;
+  --low-soft: #faeed1;
+  --out: #a8362b;
+  --out-soft: #f7e3de;
+
+  /* Destructive */
+  --danger: #a8362b;
+  --danger-soft: #f7e3de;
+
+  /* Focus ring */
+  --ring: rgba(14, 122, 85, 0.4);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-sunken: var(--sunken);
+  --color-raised: var(--raised);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-on-accent: var(--on-accent);
+
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-soft: var(--accent-soft);
+
+  --color-ok: var(--ok);
+  --color-ok-soft: var(--ok-soft);
+  --color-low: var(--low);
+  --color-low-soft: var(--low-soft);
+  --color-out: var(--out);
+  --color-out-soft: var(--out-soft);
+
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+
+  --color-ring: var(--ring);
+
+  --font-sans: var(--font-hanken), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-fraunces), ui-serif, Georgia, "Times New Roman", serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
+
+  --radius-sm: 0.375rem;
+  --radius: 0.5rem;
+  --radius-lg: 0.75rem;
+
+  --shadow-sm: 0 1px 2px rgba(33, 30, 26, 0.05), 0 1px 3px rgba(33, 30, 26, 0.04);
+  --shadow-pop: 0 16px 40px -12px rgba(33, 30, 26, 0.22), 0 4px 12px rgba(33, 30, 26, 0.08);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--canvas);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Numbers should always align in columns. */
+.tabular,
+.font-mono {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Native <dialog> backdrop — warm ink scrim with a gentle blur. */
+dialog::backdrop {
+  background: rgba(33, 30, 26, 0.32);
+  backdrop-filter: blur(2px);
+}
+
+/* A quiet rise-and-settle when a dialog opens. */
+dialog[open] {
+  animation: dialog-in 170ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes dialog-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Respect reduced-motion for the dialog/CTA transitions. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }
