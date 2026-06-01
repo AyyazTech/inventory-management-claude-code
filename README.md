@@ -15,6 +15,23 @@ A complete inventory management system built end to end with **Claude Code** on 
 - 🚨 **Low-stock alerts** — automatic badges when quantity drops to or below the reorder level
 - 📊 **Dashboard** — total products, total stock value, low-stock count, and a stock-by-category chart
 
+## Screenshots
+
+**Dashboard**
+![Dashboard](screenshots/dashboard.png)
+
+**Products**
+![Products](screenshots/products.png)
+
+**Stock**
+![Stock](screenshots/stock.png)
+
+**Movements**
+![Movements](screenshots/movements.png)
+
+**Login**
+![Login](screenshots/login.png)
+
 ## Tech stack
 
 Next.js 16 (App Router) · Prisma 6 + SQLite · Tailwind CSS 4 · Zod · TypeScript
