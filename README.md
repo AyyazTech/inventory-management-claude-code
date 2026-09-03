@@ -72,6 +72,38 @@ Password: admin123
 
 Built in stages by prompting Claude Code — the products foundation first, then the Stock + Movements pages, the dashboard, and finally login. The UI direction was guided by Claude Code's official frontend-design skill. Watch the full build on the channel above.
 
+## The prompts
+
+Run these one at a time, in order — don't paste them all at once. Each stage builds on what the previous one created.
+
+**Stage 1 — Foundation**
+```
+Build the foundation of an inventory management system in this Next.js project. For NOW, only build:
+- A clean, modern SaaS dashboard layout with a sidebar (think Linear or Stripe).
+- A Products page: list, create, edit, delete (name, SKU, category, quantity in stock, unit price, reorder level).
+- Show a clear "LOW STOCK" badge on any product whose quantity is at or below its reorder level.
+- Use Prisma with SQLite. Seed 12 realistic sample products across a few categories, some of them low on stock.
+Do NOT build stock movements, a dashboard, or login yet — we'll add those next, one at a time.
+Use the frontend-design skill and commit to one cohesive, trustworthy aesthetic.
+```
+
+**Stage 2 — Stock + Movements**
+```
+Now add stock management as two new pages in the sidebar:
+- A "Stock" page that lists all products with quick "Stock In" and "Stock Out" controls that increase or decrease a product's quantity by an amount I enter. The LOW STOCK badge updates automatically when a product crosses its reorder level.
+- A "Movements" page showing a log of every stock change (product, type, amount, resulting quantity, timestamp).
+```
+
+**Stage 3 — Dashboard**
+```
+Now add a Dashboard as the home page: total number of products, total stock value (sum of quantity x unit price), a low-stock count, and a bar chart of total stock quantity by category.
+```
+
+**Stage 4 — Login**
+```
+Finally, add a simple username and password login that protects the whole app. Seed ONE demo user (username "admin", password "admin123"). No signup, no roles, no password reset — keep auth minimal.
+```
+
 ## License
 
 MIT — use it, learn from it, build on it.
